@@ -143,7 +143,7 @@ functions = [
 
 
 def VPR_ub():
-    return " Dr. Venu Govindraju is Vice President of Research and Economic Developement at the University at Buffalo. "
+    return " Dr. Venu Govindaraju is Vice President of Research and Economic Developement at the University at Buffalo. "
 
 def Dean_ub():
     return "Dr. Kemper Lewis is Dean of School of Engineering and Applied Sciences at the University at Buffalo."

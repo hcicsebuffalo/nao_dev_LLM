@@ -293,7 +293,7 @@ def nao_do(result):
         nao.ledStopListening()
 
     elif result["func"] == "map":
-        nao.sayText_no_url( "We are currently in Davis 106 room. Please find direction to destination shown on my display. " )
+        nao.sayText_no_url( "We are currently in Davis Hall. Please find direction to destination shown on my display. " )
         nao.display_givenURL(result["arg"])
         nao.posture.goToPosture("Stand" , 0.4)
         nao.ledStopListening()
