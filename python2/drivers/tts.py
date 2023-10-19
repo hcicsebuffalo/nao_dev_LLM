@@ -228,10 +228,13 @@ class tts(base):
         #time.sleep(4)
         self.atts.say(text)
     
-    def Response(self, inp , out):
-        text =  " Question: " + inp + "\n\n Response : " +  out
-        url = self.give_url( text)
-        self.url = str(url)
+    def Response(self, inp , out, llm_method, LLM_URL):
+        if llm_method == "chatGPT":
+            text =  " Question: " + inp + "\n\n Response : " +  out
+            url = self.give_url( text)
+            self.url = str(url)
+        elif llm_method == "LLM":
+            self.url = str(LLM_URL)
 
         # print("Cloudinary time : " , time.time() - t)
 

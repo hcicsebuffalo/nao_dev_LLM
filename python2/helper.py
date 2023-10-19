@@ -26,7 +26,8 @@ MAIN_API =                 param["main_authen_api"].replace("PORT", str(trail_po
 TRANSCRIBE_API =           param["transcribe_api"].replace("PORT", str(trail_port))
 FACE_RECOG_API =           param["face_recog_api"].replace("PORT", str(trail_port))
 
-
+RESPONSE =                 param["response"]
+LLM_URL =                  param["llm_url"]
 
 # Record Audio ---------------------------------------------------------------------------
 
@@ -271,6 +272,7 @@ class Touch_interrupts(object):
 # Response code 
 
 import json
+import re 
 
 def nao_do(result):
     
@@ -285,8 +287,9 @@ def nao_do(result):
         nao.ledStopListening()
 
     elif result["func"] == "chat":
+        
         try:
-            nao.Response(  str(result["Request"]), str(result["arg"])   )    
+            nao.Response(  str(result["Request"]), str(result["arg"]) ,  RESPONSE , LLM_URL )    
         except:
             nao.sayText( "Sorry I am not able to process your request for a moment" )
         nao.posture.goToPosture("Stand" , 0.4)

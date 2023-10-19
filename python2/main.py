@@ -39,11 +39,19 @@ try:
             
             start_time = time.time()
             try:
-                response = requests.post(MAIN_API, data= {'user': AUDIO_AUTH_USER , 'audio_auth' : AUDIO_AUTH }  ,  files={'audio': open(audio_path, 'rb')  })
+                response = requests.post(MAIN_API, data= {'user': AUDIO_AUTH_USER , 'audio_auth' : AUDIO_AUTH, 'response_method' : RESPONSE }  ,  files={'audio': open(audio_path, 'rb')  })
                 if response.status_code == 200:
-                        out = response.json()
-                        for key, value in out.items():
-                            print ( '{}\t : \t {}'.format(key, value) )
+                        if RESPONSE == "chatGPT":
+                            out = response.json()
+                            for key, value in out.items():
+                                print ( '{}\t : \t {}'.format(key, value) )
+                        else:
+                            out = response.json()
+                            text = out['arg']
+                            out['arg']  = text.encode('utf-8')
+                            for key, value in out.items():
+                                print ( '{}\t : \t {}'.format(key, value) )
+                            
             except:
                 print("Server Down")
             end_time = time.time()
